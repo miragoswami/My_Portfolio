@@ -1,0 +1,17 @@
+              YOUR COMPUTER
+                    │
+          ┌─────────┴─────────┐
+          │                   │
+       React               Express
+   localhost:5173        localhost:5000
+          │                   │
+          │   HTTP request    │
+          └──────────────────>│
+                              │
+                         process request
+                              │
+          response            │
+          <───────────────────┘
+
+
+          
