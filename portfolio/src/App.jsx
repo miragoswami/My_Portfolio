@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import AdminLogin from "./admin/AdminLogin";
+import AdminDashboard from "./admin/AdminDashboard";
+
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -10,70 +13,81 @@ import Contact from "./components/Contact";
 
 import "./App.css";
 
-
 function App() {
 
-  const [mode, setMode] = useState("dark");
-
-  const [page, setPage] = useState("home");
+    const [mode, setMode] = useState("dark");
 
 
-  return (
+    // ADMIN LOGIN
 
-    <div className={`app ${mode}`}>
-
-      <Navbar
-        mode={mode}
-        setMode={setMode}
-        page={page}
-        setPage={setPage}
-      />
+    if (window.location.pathname === "/admin") {
+        return <AdminLogin />;
+    }
 
 
-      {page === "home" && (
-        <Home
-          mode={mode}
-          setPage={setPage}
-        />
-      )}
+    // ADMIN DASHBOARD
+
+    if (window.location.pathname === "/admin/dashboard") {
+        return <AdminDashboard />;
+    }
 
 
-      {page === "about" && (
-        <About
-          mode={mode}
-        />
-      )}
+    // PUBLIC PORTFOLIO
 
+    return (
 
-      {page === "experience" && (
-        <Experience
-          mode={mode}
-        />
-      )}
+        <div className={`app ${mode}`}>
 
+            <Navbar
+                mode={mode}
+                setMode={setMode}
+            />
 
-      {page === "project" && (
-        <Project
-          mode={mode}
-        />
-      )}
+            <section id="home">
+                <Home mode={mode} />
+            </section>
 
+            <section id="about">
+                <About mode={mode} />
+            </section>
 
-      {page === "education" && (
-        <Education
-          mode={mode}
-        />
-      )}
+            <section id="experience">
+                <Experience mode={mode} />
+            </section>
 
+            <section id="project">
+                <Project mode={mode} />
+            </section>
 
-      {page === "contact" && (
-        <Contact
-          mode={mode}
-        />
-      )}
+            <section id="education">
+                <Education mode={mode} />
+            </section>
 
-    </div>
-  );
+            <section id="contact">
+                <Contact mode={mode} />
+            </section>
+
+        </div>
+    );
 }
 
 export default App;
+
+
+
+
+// ADMIN DASHBOARD
+
+// Browser
+//    │
+//    ↓
+// /admin/dashboard
+//    │
+//    ↓
+// App.jsx
+//    │
+//    ↓
+// <AdminDashboard />
+//    │
+//    ↓
+// AdminDashboard.jsx

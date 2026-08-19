@@ -7,7 +7,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 html,
 body,
 #root {
@@ -125,7 +127,6 @@ body {
   margin-right: auto;
 }
 
-
 /* =========================
    NAV LINKS
 ========================= */
@@ -133,11 +134,10 @@ body {
 .nav-links {
   display: flex;
   align-items: center;
-
   gap: 30px;
 }
 
-.nav-links button {
+.nav-links a {
   border: none;
   background: transparent;
 
@@ -150,17 +150,14 @@ body {
 
   white-space: nowrap;
 
+  text-decoration: none;
+
   transition: 0.3s;
 }
 
-.nav-links button:hover {
+.nav-links a:hover {
   color: var(--green);
 }
-
-.nav-links button.active {
-  color: var(--green);
-}
-
 
 /* =========================
    DARK MODE BUTTON
@@ -204,26 +201,33 @@ body {
 /* =========================
    RESUME
 ========================= */
-
 .resume-btn {
-  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
-  background-color: var(--green);
+  padding: 12px 24px;
+  margin-left: 20px;
 
+  background: #20d16f;
   color: white;
 
-  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
 
-  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 
-  font-size: 16px;
-  font-weight: 600;
+  transition: all 0.3s ease;
+}
 
-  cursor: pointer;
-
-  white-space: nowrap;
-
-  flex-shrink: 0;
+.resume-btn:hover {
+  background: #ffffff;
+  color: #20d16f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(32, 209, 111, 0.25);
 }
 /* =========================
    HOME
@@ -1379,5 +1383,224 @@ body {
   .page-section {
     padding: 60px 5%;
   }
+
+}
+
+/* =========================
+   ADMIN LOGIN
+========================= */
+
+.admin-login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--bg-color);
+  color: var(--text-color);
+
+  padding: 20px;
+}
+
+
+/* LOGIN CARD */
+
+.admin-login form {
+  width: 380px;
+  max-width: 100%;
+
+  padding: 35px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  background: var(--card-bg, #ffffff);
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+/* TITLE */
+
+.admin-login h1 {
+  margin-bottom: 25px;
+
+  font-size: 32px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+
+/* INPUTS */
+
+.admin-login input {
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border: 1px solid #d5d5d5;
+  border-radius: 8px;
+
+  outline: none;
+
+  font-size: 15px;
+
+  background: transparent;
+  color: var(--text-color);
+
+  transition: 0.3s;
+}
+
+
+/* INPUT FOCUS */
+
+.admin-login input:focus {
+  border-color: #888;
+
+  box-shadow:
+    0 0 0 3px rgba(0, 0, 0, 0.06);
+}
+
+
+/* LOGIN BUTTON */
+
+.admin-login button {
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #111;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+
+/* BUTTON HOVER */
+
+.admin-login button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+
+/* MESSAGE */
+
+.admin-login p {
+  margin-top: 18px;
+
+  font-size: 14px;
+
+  text-align: center;
+
+  color: #d32f2f;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+
+  .admin-login form {
+    padding: 25px;
+  }
+
+  .admin-login h1 {
+    font-size: 27px;
+  }
+
+}
+
+
+
+
+
+/* =========================
+   ADMIN PROJECTS
+========================= */
+
+.projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.projects-header h2 {
+    margin: 0;
+}
+
+.projects-header button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 7px;
+    background: #111;
+    color: white;
+    cursor: pointer;
+}
+
+
+.admin-projects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+
+.admin-project-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.admin-project-card h3 {
+    margin-top: 0;
+}
+
+
+.admin-project-card p {
+    color: #777;
+    line-height: 1.6;
+}
+
+
+.project-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+.project-actions button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+@media (max-width: 700px) {
+
+    .admin-projects {
+        grid-template-columns: 1fr;
+    }
 
 }

@@ -2,7 +2,15 @@ import React from "react";
 
 import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 
-function Home(props) {
+function Home() {
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="home">
       <div className="home-content">
@@ -17,12 +25,14 @@ function Home(props) {
           Express and MongoDB.
         </p>
 
-        <button
+        <a
+          href="#contact"
           className="contact-btn"
-          onClick={() => props.setPage("contact")}
+          onClick={scrollToContact}
+          style={{ textDecoration: "none", display: "inline-block", textAlign: "center" }}
         >
           Contact 
-        </button>
+        </a>
 
         <div className="social-icons">
           <a href="https://www.linkedin.com/in/mira-goswami-2175452a5/" target="_blank" rel="noreferrer">

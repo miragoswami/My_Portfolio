@@ -1,0 +1,21 @@
+/api/contact
+
+
+
+React--------------------------->{FRONTEND}
+  │
+  │ GET /api/contact
+  ↓
+server.js -----------------------------|
+  │
+  │ /api/contact                       |
+  ↓
+contactRoutes.js                       |->{BACKEND}
+  │
+  │ router.get("/", getContact)        |
+  ↓
+contactController.js-------------------|
+  │
+  │ res.json(contact)
+  ↓
+React ------------------------>{FRONTEND}

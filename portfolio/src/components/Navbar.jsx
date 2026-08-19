@@ -3,68 +3,27 @@ import React from "react";
 function Navbar(props) {
   return (
     <nav className="navbar">
-
       <div className="navbar-container">
 
         {/* LOGO */}
-        <div className="logo">
-          {" Mira Goswami "}
-        </div>
+        <div className="logo">{" Mira Goswami "}</div>
 
         {/* NAVIGATION */}
         <div className="nav-links">
-
-          <button
-            className={props.page === "home" ? "active" : ""}
-            onClick={() => props.setPage("home")}
-          >
-            HOME
-          </button>
-
-          <button
-            className={props.page === "about" ? "active" : ""}
-            onClick={() => props.setPage("about")}
-          >
-            ABOUT ME
-          </button>
-
-          <button
-            className={props.page === "experience" ? "active" : ""}
-            onClick={() => props.setPage("experience")}
-          >
-            EXPERIENCE
-          </button>
-
-          <button
-            className={props.page === "project" ? "active" : ""}
-            onClick={() => props.setPage("project")}
-          >
-            PROJECT
-          </button>
-
-          <button
-            className={props.page === "education" ? "active" : ""}
-            onClick={() => props.setPage("education")}
-          >
-            EDUCATION
-          </button>
-
-          <button
-            className={props.page === "contact" ? "active" : ""}
-            onClick={() => props.setPage("contact")}
-          >
-            CONTACT
-          </button>
+          <a href ="#home" >HOME</a>
+          <a href ="#about" >ABOUT</a>
+          <a href ="#experience" >EXPERIENCE</a>
+          <a href ="#project" >PROJECT</a>
+          <a href ="#education" >EDUCATION</a>
+          <a href ="#contact" >CONTACT</a>
 
         </div>
 
-        {/* DARK MODE */}
+         {/* DARK MODE */}
         <button
           className="theme-toggle"
           onClick={() =>
-            props.setMode(
-              props.mode === "light" ? "dark" : "light"
-            )
+            props.setMode(props.mode === "light" ? "dark" : "light")
           }
         >
           <span
@@ -77,14 +36,51 @@ function Navbar(props) {
         </button>
 
         {/* RESUME */}
-        <button className="resume-btn">
-          RESUME
-        </button>
-
+        <a
+          href="/Mira_Goswami_Resume.pdf"
+          download="Mira_Goswami_Resume.pdf"
+          className="resume-btn"
+        >
+           ↓ RESUME
+        </a>
       </div>
-
     </nav>
   );
 }
 
 export default Navbar;
+
+
+
+//Scrolling
+
+
+// Navbar
+//    ↓
+// Home
+//    ↓
+// About
+//    ↓
+// Experience
+//    ↓
+// Project
+//    ↓
+// Education
+//    ↓
+// Contact
+
+
+//we gieven section unique id'
+// example : <section id="contact">
+
+// we changed the button into href
+//example : <a href="#education">EDUCATION</a>
+
+//we used scroll-behavior to html
+// example :
+//          html {
+//            scroll-behavior: smooth;
+//          }
+
+//with this : scroll-behaviour: smooth:
+// browser can smoothly move down  like from home ----->About

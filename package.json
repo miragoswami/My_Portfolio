@@ -1,0 +1,16 @@
+{
+  "name": "react-express-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix portfolio run dev",
+    "build": "npm --prefix portfolio install && npm --prefix portfolio run build && npm --prefix backend install",
+    "lint": "npm --prefix portfolio run lint",
+    "server": "npm --prefix backend run dev",
+    "start": "node backend/src/server.js"
+  },
+  "dependencies": {
+    "mongoose": "^9.9.3",
+    "react-router-dom": "^7.18.2"
+  }
+}

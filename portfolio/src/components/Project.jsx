@@ -1,55 +1,83 @@
 import React, { useEffect, useState } from "react";
+import { API_BASE_URL } from "../config";
+
+const DEFAULT_PROJECTS = [
+    {
+        _id: "default-1",
+        title: "Portfolio Web Application",
+        description: "A full-stack modern responsive portfolio built with React, Express, Node.js, and MongoDB.",
+        technologies: ["React", "Express", "Node.js", "MongoDB", "Bootstrap"],
+        github: "https://github.com/miragoswami/My_Portfolio"
+    }
+];
 
 function Project() {
-  const [projects, setProjects] = useState([]);
+    const [projects, setProjects] = useState(DEFAULT_PROJECTS);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/projects")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Projects:", data);
-        setProjects(data);
-      })
-      .catch((error) => {
-        console.log("Error:", error);
-      });
-  }, []);
+    useEffect(() => {
+        fetch(`${API_BASE_URL}/projects`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Failed to fetch projects");
+                }
 
-  return (
-    <section className="page-section">
+                return response.json();
+            })
+            .then((data) => {
+                if (Array.isArray(data) && data.length > 0) {
+                    setProjects(data);
+                } else if (data && Array.isArray(data.projects) && data.projects.length > 0) {
+                    setProjects(data.projects);
+                }
+            })
+            .catch((error) => {
+                console.warn("Using default projects. Error:", error.message);
+            });
+    }, []);
 
-      <p className="section-small">MY WORK</p>
+    return (
+        <section className="page-section">
 
-      <h1 className="section-title">Projects</h1>
+            <p className="section-small">MY WORK</p>
 
-      <div className="project-container">
+            <h1 className="section-title">Projects</h1>
 
-        {projects.map((project) => (
-          <div className="project-card" key={project.id}>
+            <div className="project-container">
 
-            <h2>{project.title}</h2>
+                {projects.map((project, index) => (
+                    <div className="project-card" key={project._id || project.id || index}>
 
-            <p>{project.description}</p>
+                        <h2>{project.title}</h2>
 
-            <p>
-              Technologies: {project.technologies.join(", ")}
-            </p>
+                        <p>{project.description}</p>
 
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              View Project
-            </a>
+                        {Array.isArray(project.technologies) && project.technologies.length > 0 && (
+                            <div className="project-tech">
+                                {project.technologies.map((tech, techIdx) => (
+                                    <span key={techIdx}>{tech}</span>
+                                ))}
+                            </div>
+                        )}
 
-          </div>
-        ))}
+                        {project.github && (
+                            <a
+                                href={project.github}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="project-btn"
+                                style={{ textDecoration: "none", display: "inline-block" }}
+                            >
+                                View Project
+                            </a>
+                        )}
 
-      </div>
+                    </div>
+                ))}
 
-    </section>
-  );
+            </div>
+
+        </section>
+    );
 }
 
 export default Project;
