@@ -15,3 +15,9 @@ build/
 #OS Files
 .DS_store
 thumbs.db
+
+
+
+Documents/
+node_modules/
+.env
