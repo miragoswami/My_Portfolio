@@ -20,7 +20,13 @@ const authRoute = require("./routes/authRoutes");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: [
+        "http://localhost:5173",
+        "https://my-portfolio-1-504y.onrender.com"
+    ]
+}));
+
 app.use(express.json());
 
 // API Routes
@@ -28,6 +34,7 @@ app.use("/api/projects", projectRoute);
 app.use("/api/contact", contactRoute);
 app.use("/api/education", educationRoute);
 app.use("/api/auth", authRoute);
+
 
 // Serve Frontend Static Files in Production
 const distPath = path.join(__dirname, "../../portfolio/dist");
