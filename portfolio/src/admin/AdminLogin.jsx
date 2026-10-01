@@ -8,59 +8,50 @@ function AdminLogin() {
     const [message, setMessage] = useState("");
 
     const handleLogin = async (e) => {
-
         e.preventDefault();
 
         try {
-            
-            //username and password when entered , they are checked there
-
             const response = await fetch(
                 `${API_URL}/api/auth/login`,
                 {
                     method: "POST",
-
                     headers: {
                         "Content-Type": "application/json"
                     },
-
                     body: JSON.stringify({
-                        username: username, //admin
-                        password: password //admin123
+                        username: username.trim(),
+                        password: password
                     })
                 }
             );
 
-            //response is stored in data
-            const data = await response.json(); 
+            let data = null;
+            try {
+                data = await response.json();
+            } catch {
+                data = null;
+            }
 
-            //if response is success then  adminloggedin is true
-            if (data.success) {
-
+            if (response.ok && data && data.success) {
                 localStorage.setItem("adminLoggedIn", "true");
-
-                //open admin dashboard
                 window.location.href = "/admin/dashboard";
             } else {
-                setMessage(data.message);
+                setMessage((data && data.message) || `Login failed (Status: ${response.status})`);
             }
 
         } catch (error) {
-
-            console.error(error);
-            setMessage("Unable to connect to backend");
-
+            console.error("Login request error:", error);
+            setMessage("Unable to connect to backend server. Ensure backend is running.");
         }
     };
 
-
     return (
         <div className="admin-login">
+            <a href="/" className="admin-back-btn">← Back to Portfolio</a>
 
             <h1>Admin Login</h1>
 
             <form onSubmit={handleLogin}>
-
                 <input
                     type="text"
                     placeholder="Username"
@@ -78,13 +69,11 @@ function AdminLogin() {
                 <button type="submit">
                     Login
                 </button>
-
             </form>
 
             {message && (
                 <p>{message}</p>
             )}
-
         </div>
     );
 }

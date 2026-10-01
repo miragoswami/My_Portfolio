@@ -13,7 +13,8 @@ import {
   FiUser,
   FiPhone,
   FiAward,
-  FiCheckCircle
+  FiCheckCircle,
+  FiArrowLeft
 } from "react-icons/fi";
 
 import API_URL from "../services/api";
@@ -134,6 +135,7 @@ function AdminDashboard() {
   };
 
   useEffect(() => {
+    if (checkingAuth) return;
     if (activePage === "projects" || activePage === "dashboard") {
       fetchProjects();
     }
@@ -143,7 +145,7 @@ function AdminDashboard() {
     if (activePage === "contact" || activePage === "dashboard") {
       fetchContact();
     }
-  }, [activePage]);
+  }, [activePage, checkingAuth]);
 
   // ADD PROJECT
   const handleAddProject = async () => {
@@ -183,10 +185,15 @@ function AdminDashboard() {
         body: JSON.stringify(projectData),
       });
 
-      const data = await response.json();
+      let data = null;
+      try {
+        data = await response.json();
+      } catch {
+        data = null;
+      }
 
       if (!response.ok) {
-        throw new Error(data.message || "Failed to add project");
+        throw new Error((data && data.message) || `Failed to add project (status: ${response.status})`);
       }
 
       setAddProjectSuccess("Project added successfully!");
@@ -220,10 +227,15 @@ function AdminDashboard() {
         method: "DELETE",
       });
 
-      const data = await response.json();
+      let data = null;
+      try {
+        data = await response.json();
+      } catch {
+        data = null;
+      }
 
       if (!response.ok) {
-        throw new Error(data.message || "Failed to delete project");
+        throw new Error((data && data.message) || `Failed to delete project (status: ${response.status})`);
       }
 
       // Remove from state immediately
@@ -288,10 +300,15 @@ function AdminDashboard() {
         body: JSON.stringify(updatedData),
       });
 
-      const data = await response.json();
+      let data = null;
+      try {
+        data = await response.json();
+      } catch {
+        data = null;
+      }
 
       if (!response.ok) {
-        throw new Error(data.message || "Failed to update project");
+        throw new Error((data && data.message) || `Failed to update project (status: ${response.status})`);
       }
 
       setEditSuccess("Project updated successfully!");
@@ -350,6 +367,13 @@ function AdminDashboard() {
           >
             <FiMail /> Contact
           </button>
+
+          <a 
+            href="/" 
+            className="admin-nav-link"
+          >
+            <FiArrowLeft /> View Portfolio
+          </a>
         </nav>
 
         {/* LOGOUT */}
@@ -371,7 +395,12 @@ function AdminDashboard() {
             {activePage === "contact" && "Contact"}
           </h1>
 
-          <p><FiUser /> Welcome back, Admin</p>
+          <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+            <a href="/" className="admin-top-view-btn">
+              <FiArrowLeft /> View Portfolio
+            </a>
+            <p style={{ margin: 0 }}><FiUser /> Welcome back, Admin</p>
+          </div>
         </header>
 
         {/* =========================
