@@ -16,7 +16,6 @@ import {
     SiTypescript
 } from "react-icons/si";
 
-import "../css/FloatingTools.css";
 
 function FloatingTools() {
     const tools = [

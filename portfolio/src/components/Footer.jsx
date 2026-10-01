@@ -4,7 +4,6 @@ import {
     FaReact
 } from "react-icons/fa";
 
-import "../css/Footer.css";
 
 function Footer() {
     return (
@@ -45,12 +44,9 @@ function Footer() {
 
                 <div className="footer-line"></div>
 
-                <p className="copyright">
-                    © {new Date().getFullYear()} Mira Goswami. All rights reserved.
-                </p>
 
                 <p className="made-with">
-                    This website was made with <FaReact />
+                   <b>  This website was made with <FaReact /></b>
                 </p>
 
             </div>

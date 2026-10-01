@@ -950,6 +950,131 @@ body {
 
   margin-bottom: 12px;
 }
+.floating-tools {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.floating-tool {
+    position: absolute;
+
+    left: var(--left);
+    top: var(--top);
+
+    font-size: 48px;
+
+    opacity: 0.30;
+
+    animation:
+        floatingAnimation
+        var(--duration)
+        ease-in-out
+        var(--delay)
+        infinite;
+
+    filter:
+        drop-shadow(0 0 8px currentColor)
+        drop-shadow(0 0 18px currentColor);
+}
+
+/* Larger icons */
+.floating-tool:nth-child(3n) {
+    font-size: 58px;
+}
+
+.floating-tool:nth-child(5n) {
+    font-size: 65px;
+}
+
+.floating-tool:nth-child(7n) {
+    font-size: 42px;
+}
+
+/* Different transparency */
+.floating-tool:nth-child(2n) {
+    opacity: 0.22;
+}
+
+.floating-tool:nth-child(3n) {
+    opacity: 0.35;
+}
+
+/* DRF text */
+.text-tool {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+/* Floating movement */
+@keyframes floatingAnimation {
+
+    0% {
+        transform:
+            translate(0, 0)
+            rotate(0deg)
+            scale(0.9);
+    }
+
+    20% {
+        transform:
+            translate(50px, -40px)
+            rotate(8deg)
+            scale(1.05);
+    }
+
+    40% {
+        transform:
+            translate(-40px, -80px)
+            rotate(-8deg)
+            scale(1.15);
+    }
+
+    60% {
+        transform:
+            translate(60px, -30px)
+            rotate(10deg)
+            scale(0.95);
+    }
+
+    80% {
+        transform:
+            translate(-50px, 40px)
+            rotate(-10deg)
+            scale(1.08);
+    }
+
+    100% {
+        transform:
+            translate(0, 0)
+            rotate(0deg)
+            scale(0.9);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .floating-tool {
+        font-size: 32px;
+    }
+
+    .floating-tool:nth-child(3n) {
+        font-size: 40px;
+    }
+
+    .floating-tool:nth-child(5n) {
+        font-size: 46px;
+    }
+}
 
 
 .education-heading h1 {
@@ -1728,124 +1853,384 @@ body {
 
 
 /* Flooting tool xcss */
-
 .floating-tools {
     position: fixed;
     inset: 0;
+
     width: 100%;
     height: 100vh;
+
     pointer-events: none;
-    z-index: 0;
+
     overflow: hidden;
+
+    z-index: 0;
 }
+
+
+/* =========================
+   COMMON ICON STYLE
+========================= */
 
 .floating-tool {
     position: absolute;
-    font-size: 28px;
-    opacity: 0.28;
-    animation: floatTool 6s ease-in-out infinite;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 45px;
+
+    opacity: 0.38;
+
+    filter: drop-shadow(0 0 8px currentColor);
+
+    animation:
+        floating 7s ease-in-out infinite,
+        rotateTool 12s ease-in-out infinite;
+
+    will-change: transform;
 }
 
-/* Different positions */
+
+/* =========================
+   ICON COLORS
+========================= */
 
 .tool-1 {
-    top: 15%;
-    left: 8%;
     color: #61dafb;
-    animation-delay: 0s;
 }
 
 .tool-2 {
-    top: 25%;
-    right: 10%;
     color: #68a063;
-    animation-delay: 1s;
 }
 
 .tool-3 {
-    top: 45%;
-    left: 5%;
     color: #f7df1e;
-    animation-delay: 2s;
 }
 
 .tool-4 {
-    top: 65%;
-    right: 7%;
     color: #e34f26;
-    animation-delay: 3s;
 }
 
 .tool-5 {
-    bottom: 12%;
-    left: 18%;
     color: #1572b6;
-    animation-delay: 1.5s;
 }
 
 .tool-6 {
-    top: 12%;
-    left: 45%;
     color: #47a248;
-    animation-delay: 2.5s;
 }
 
 .tool-7 {
-    top: 55%;
-    right: 20%;
     color: #ffffff;
-    animation-delay: 3.5s;
 }
 
 .tool-8 {
-    top: 35%;
-    right: 40%;
     color: #3776ab;
-    animation-delay: 1s;
 }
 
 .tool-9 {
-    bottom: 20%;
-    right: 35%;
     color: #44b78b;
-    animation-delay: 2s;
 }
 
 .tool-10 {
-    bottom: 8%;
-    right: 12%;
-    color: #f05032;
-    animation-delay: 4s;
+    color: #3178c6;
 }
 
 .tool-11 {
-    top: 75%;
-    left: 7%;
-    color: #ffffff;
-    animation-delay: 2.5s;
+    color: #f05032;
 }
 
 .tool-12 {
-    top: 18%;
-    right: 30%;
-    color: #3178c6;
-    animation-delay: 3s;
+    color: #ffffff;
 }
 
-@keyframes floatTool {
+.tool-13 {
+    color: #f89820;
+}
+
+.tool-14 {
+    color: #7952b3;
+}
+
+.tool-15 {
+    color: #38bdf8;
+}
+
+.tool-16 {
+    color: #00758f;
+}
+
+.tool-17 {
+    color: #336791;
+}
+
+.tool-18 {
+    color: #ffca28;
+}
+
+.tool-19 {
+    color: #764abc;
+}
+
+.tool-20 {
+    color: #ffffff;
+}
+
+.tool-21 {
+    color: #646cff;
+}
+
+.tool-22 {
+    color: #ff6c37;
+}
+
+.tool-23 {
+    color: #007acc;
+}
+
+.tool-24 {
+    color: #2496ed;
+}
+
+.tool-25 {
+    color: #cb3837;
+}
+
+
+/* =========================
+   POSITIONS + SIZES
+========================= */
+
+/* Top */
+
+.tool-1 {
+    top: 10%;
+    left: 8%;
+    font-size: 55px;
+    animation-duration: 8s;
+}
+
+.tool-2 {
+    top: 16%;
+    left: 28%;
+    font-size: 42px;
+    animation-duration: 10s;
+}
+
+.tool-3 {
+    top: 8%;
+    left: 52%;
+    font-size: 48px;
+    animation-duration: 7s;
+}
+
+.tool-4 {
+    top: 20%;
+    right: 27%;
+    font-size: 52px;
+    animation-duration: 9s;
+}
+
+.tool-5 {
+    top: 11%;
+    right: 8%;
+    font-size: 44px;
+    animation-duration: 11s;
+}
+
+
+/* Upper-middle */
+
+.tool-6 {
+    top: 32%;
+    left: 5%;
+    font-size: 50px;
+    animation-duration: 9s;
+}
+
+.tool-7 {
+    top: 38%;
+    left: 23%;
+    font-size: 38px;
+    animation-duration: 12s;
+}
+
+.tool-8 {
+    top: 30%;
+    right: 15%;
+    font-size: 58px;
+    animation-duration: 8s;
+}
+
+.tool-9 {
+    top: 43%;
+    right: 4%;
+    font-size: 44px;
+    animation-duration: 10s;
+}
+
+.tool-10 {
+    top: 48%;
+    left: 10%;
+    font-size: 40px;
+    animation-duration: 13s;
+}
+
+
+/* Middle */
+
+.tool-11 {
+    top: 55%;
+    left: 27%;
+    font-size: 46px;
+    animation-duration: 8s;
+}
+
+.tool-12 {
+    top: 58%;
+    right: 27%;
+    font-size: 55px;
+    animation-duration: 11s;
+}
+
+.tool-13 {
+    top: 50%;
+    right: 10%;
+    font-size: 42px;
+    animation-duration: 9s;
+}
+
+.tool-14 {
+    top: 62%;
+    left: 4%;
+    font-size: 52px;
+    animation-duration: 12s;
+}
+
+.tool-15 {
+    top: 68%;
+    right: 5%;
+    font-size: 48px;
+    animation-duration: 8s;
+}
+
+
+/* Bottom */
+
+.tool-16 {
+    bottom: 15%;
+    left: 17%;
+    font-size: 42px;
+    animation-duration: 10s;
+}
+
+.tool-17 {
+    bottom: 8%;
+    left: 35%;
+    font-size: 52px;
+    animation-duration: 9s;
+}
+
+.tool-18 {
+    bottom: 18%;
+    left: 50%;
+    font-size: 38px;
+    animation-duration: 12s;
+}
+
+.tool-19 {
+    bottom: 10%;
+    right: 30%;
+    font-size: 50px;
+    animation-duration: 8s;
+}
+
+.tool-20 {
+    bottom: 22%;
+    right: 15%;
+    font-size: 42px;
+    animation-duration: 11s;
+}
+
+.tool-21 {
+    bottom: 5%;
+    right: 6%;
+    font-size: 58px;
+    animation-duration: 9s;
+}
+
+.tool-22 {
+    top: 72%;
+    left: 40%;
+    font-size: 38px;
+    animation-duration: 13s;
+}
+
+.tool-23 {
+    top: 25%;
+    left: 43%;
+    font-size: 34px;
+    animation-duration: 10s;
+}
+
+.tool-24 {
+    top: 75%;
+    right: 42%;
+    font-size: 46px;
+    animation-duration: 12s;
+}
+
+.tool-25 {
+    top: 35%;
+    left: 40%;
+    font-size: 36px;
+    animation-duration: 8s;
+}
+
+
+/* =========================
+   FLOATING ANIMATION
+========================= */
+
+@keyframes floating {
+
     0% {
-        transform: translateY(0px) rotate(0deg);
+        transform: translate3d(0, 0, 0);
+    }
+
+    25% {
+        transform: translate3d(18px, -25px, 0);
     }
 
     50% {
-        transform: translateY(-25px) rotate(8deg);
+        transform: translate3d(-12px, -45px, 0);
+    }
+
+    75% {
+        transform: translate3d(22px, -20px, 0);
     }
 
     100% {
-        transform: translateY(0px) rotate(0deg);
+        transform: translate3d(0, 0, 0);
     }
 }
 
+
+@keyframes rotateTool {
+
+    0% {
+        rotate: 0deg;
+    }
+
+    50% {
+        rotate: 8deg;
+    }
+
+    100% {
+        rotate: 0deg;
+    }
+}
 /* Footer css
  */
 
@@ -1931,3 +2316,5 @@ body {
     vertical-align: middle;
     margin-left: 4px;
 }
+
+
