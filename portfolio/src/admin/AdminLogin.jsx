@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { API_BASE_URL } from "../config";
+import API_URL from "../services/api";
 
 function AdminLogin() {
 
@@ -16,7 +16,7 @@ function AdminLogin() {
             //username and password when entered , they are checked there
 
             const response = await fetch(
-                `${API_BASE_URL}/auth/login`,
+                `${API_URL}/api/auth/login`,
                 {
                     method: "POST",
 

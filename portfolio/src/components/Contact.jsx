@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaEnvelope, FaPhone } from "react-icons/fa";
-import { API_BASE_URL } from "../config";
+import API_URL from "../services/api";
 
 const DEFAULT_CONTACT = {
     email: "miragoswami686@gmail.com",
@@ -11,7 +11,7 @@ function Contact() {
     const [contact, setContact] = useState(DEFAULT_CONTACT);
 
     useEffect(() => {
-        fetch(`${API_BASE_URL}/contact`)
+        fetch(`${API_URL}/api/contact`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Failed to fetch contact");
@@ -25,7 +25,10 @@ function Contact() {
                 }
             })
             .catch((error) => {
-                console.warn("Using default contact data. Error:", error.message);
+                console.warn(
+                    "Using default contact data. Error:",
+                    error.message
+                );
             });
     }, []);
 
@@ -44,16 +47,20 @@ function Contact() {
 
             <div className="contact-container">
 
-                <a
-                    href={`mailto:${contact.email}`}
-                    className="contact-card"
-                >
-                    <FaEnvelope className="contact-icon" />
-                    <span>{contact.email}</span>
-                </a>
+                {/* Email */}
+               <a
+    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${contact.email}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="contact-card"
+>
+    <FaEnvelope className="contact-icon" />
+    <span>{contact.email}</span>
+</a>
 
+                {/* Phone */}
                 <a
-                    href={`tel:${contact.phone}`}
+                    href={`tel:${contact.phone.replace(/\s/g, "")}`}
                     className="contact-card"
                 >
                     <FaPhone className="contact-icon" />

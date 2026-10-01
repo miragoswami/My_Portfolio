@@ -1,5 +1,5 @@
 import React , { useState , useEffect }from "react";
-import { API_BASE_URL } from "../config";
+import API_URL from "../services/api";
 
 const DEFAULT_EDUCATION = {
   course: "BE in Computer Engineering",
@@ -11,7 +11,7 @@ function Education() {
   const [education, setEducation] = useState(DEFAULT_EDUCATION);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/education`)
+    fetch(`${API_URL}/api/education`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch education");

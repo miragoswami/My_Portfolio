@@ -1,6 +1,5 @@
-// Centralized API configuration for local development and production deployment
-export const API_BASE_URL = 
-  import.meta.env.VITE_API_URL || 
-  (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" 
-    ? "http://localhost:5000/api" 
-    : "/api");
+import API_URL from "./services/api";
+
+export const API_BASE_URL = `${API_URL}/api`;
+export { API_URL };
+export default API_URL;

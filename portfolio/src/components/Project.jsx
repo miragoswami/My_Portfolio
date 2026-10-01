@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { API_BASE_URL } from "../config";
+import API_URL from "../services/api";
 
 const DEFAULT_PROJECTS = [
     {
@@ -15,7 +15,7 @@ function Project() {
     const [projects, setProjects] = useState(DEFAULT_PROJECTS);
 
     useEffect(() => {
-        fetch(`${API_BASE_URL}/projects`)
+        fetch(`${API_URL}/api/projects`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Failed to fetch projects");

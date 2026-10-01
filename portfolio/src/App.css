@@ -1130,6 +1130,21 @@ body {
 }
 
 
+
+.contact-card {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.contact-card:hover {
+    text-decoration: none;
+}
+
+.contact-card span {
+    cursor: pointer;
+}
+
 /* =====================================
    CONTACT HEADING
 ===================================== */

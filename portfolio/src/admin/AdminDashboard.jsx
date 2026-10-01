@@ -16,7 +16,7 @@ import {
   FiCheckCircle
 } from "react-icons/fi";
 
-import { API_BASE_URL as API_BASE } from "../config";
+import API_URL from "../services/api";
 
 function AdminDashboard() {
   const [activePage, setActivePage] = useState("dashboard");
@@ -82,7 +82,7 @@ function AdminDashboard() {
       setLoadingProjects(true);
       setProjectError("");
 
-      const response = await fetch(`${API_BASE}/projects`);
+      const response = await fetch(`${API_URL}/api/projects`);
       if (!response.ok) {
         throw new Error("Failed to fetch projects");
       }
@@ -106,7 +106,7 @@ function AdminDashboard() {
   // FETCH EDUCATION
   const fetchEducation = async () => {
     try {
-      const res = await fetch(`${API_BASE}/education`);
+      const res = await fetch(`${API_URL}/api/education`);
       if (res.ok) {
         const data = await res.json();
         if (data && data.course) {
@@ -121,7 +121,7 @@ function AdminDashboard() {
   // FETCH CONTACT
   const fetchContact = async () => {
     try {
-      const res = await fetch(`${API_BASE}/contact`);
+      const res = await fetch(`${API_URL}/api/contact`);
       if (res.ok) {
         const data = await res.json();
         if (data && data.email) {
@@ -175,7 +175,7 @@ function AdminDashboard() {
         github: projectGithub.trim(),
       };
 
-      const response = await fetch(`${API_BASE}/projects`, {
+      const response = await fetch(`${API_URL}/api/projects`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -216,7 +216,7 @@ function AdminDashboard() {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`${API_BASE}/projects/${projectId}`, {
+      const response = await fetch(`${API_URL}/api/projects/${projectId}`, {
         method: "DELETE",
       });
 
@@ -280,7 +280,7 @@ function AdminDashboard() {
       };
 
       const projectId = editingProject._id || editingProject.id;
-      const response = await fetch(`${API_BASE}/projects/${projectId}`, {
+      const response = await fetch(`${API_URL}/api/projects/${projectId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
