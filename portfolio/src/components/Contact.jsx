@@ -41,28 +41,25 @@ function Contact() {
         </p>
       </div>
       <div className="contact-container">
+        {/* Email */}
+        <a
+          href={`https://mail.google.com/mail/?view=cm&fs=1&to=${contact.email}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="contact-card"
+        >
+          <FaEnvelope className="contact-icon" />
+          <span>{contact.email}</span>
+        </a>
 
-    {/* Email */}
-    <a
-        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${contact.email}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="contact-card"
-    >
-        <FaEnvelope className="contact-icon" />
-        <span>{contact.email}</span>
-    </a>
-
-    {/* Phone */}
-    <a
-        href={`tel:${contact.phone.replace(/\s/g, "")}`}
-        className="contact-card"
-    >
-        <FaPhone className="contact-icon" />
-        <span>{contact.phone}</span>
-    </a>
-
-</div>
+        {/* Phone */}
+        <a
+          href={`tel:${contact.phone.replace(/\s/g, "")}`}
+          className="contact-card"
+        >
+          <FaPhone className="contact-icon" />
+          <span>{contact.phone}</span>
+        </a>
       </div>
     </section>
   );
