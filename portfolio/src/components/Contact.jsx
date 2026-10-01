@@ -54,12 +54,14 @@ function Contact() {
 
         {/* Phone */}
         <a
-          href={`tel:${contact.phone.replace(/\s/g, "")}`}
-          className="contact-card"
-        >
-          <FaPhone className="contact-icon" />
-          <span>{contact.phone}</span>
-        </a>
+    href="https://wa.me/919455941410"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="contact-card"
+>
+    <FaPhone className="contact-icon" />
+    <span>+91 9455941410</span>
+</a>
       </div>
     </section>
   );

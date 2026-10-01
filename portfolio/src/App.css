@@ -1145,6 +1145,15 @@ body {
     cursor: pointer;
 }
 
+.contact-card {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.contact-card:hover {
+    text-decoration: none;
+}
 /* =====================================
    CONTACT HEADING
 ===================================== */
